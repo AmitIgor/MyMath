@@ -12,8 +12,15 @@ package myMath;
 public class Monom implements function{
 
 	public Monom(double a, int b){
-		this.set_coefficient(a);
-		this.set_power(b);					// צריך לזכור להוסיף מקרי קצה (לדוגמא שליליים)
+		try {
+			if(b < 0)
+				throw new Error("Monom's power cant be negative");
+			this.set_coefficient(a);
+			this.set_power(b);			
+		}
+		catch(Exception e){
+
+		}
 	}
 
 	/**
@@ -63,8 +70,8 @@ public class Monom implements function{
 	 * @param p The power to be set.
 	 */
 	public void set_power(int p) {
-			this._power = p;
-		}
+		this._power = p;
+	}
 
 	public String toString() {
 		return _coefficient + "x^" + _power;
