@@ -46,6 +46,8 @@ public class Polynom implements Polynom_able{
 		catch (Exception e) {
 		}
 
+		_p = HandlePolynomSpaces(_p);
+
 		String reg = " ";
 		String[] splited_p = _p.split(reg);
 
@@ -70,11 +72,17 @@ public class Polynom implements Polynom_able{
 			if (mTemp.charAt(0) == '-'  && mTemp.charAt(1) == 'x')
 				mTemp = "-1" + mTemp.substring(1);
 
-			//			System.out.println(mTemp);
-			String[] monom_p = mTemp.split("x\\^");
-			double a = Double.parseDouble(monom_p[0].charAt(0) == '+'? monom_p[0].substring(1) : monom_p[0]);
-			int b = Integer.parseInt(monom_p[1]);
-			this.add(new Monom(a,b));
+			if (!(mTemp.contains("x"))) {
+				double a = Double.parseDouble(mTemp);
+				int b = 0;
+				this.add(new Monom(a,b));
+			}
+			else {
+				String[] monom_p = mTemp.split("x\\^");
+				double a = Double.parseDouble(monom_p[0].charAt(0) == '+'? monom_p[0].substring(1) : monom_p[0]);
+				int b = Integer.parseInt(monom_p[1]);
+				this.add(new Monom(a,b));
+			}
 		}
 	}
 
@@ -339,6 +347,30 @@ public class Polynom implements Polynom_able{
 
 		}
 		return forPrint;
+	}
+	
+	/** 
+	 * this method checks if a certain polynom has spaces, if it does -> delete them, and prepares the string for split
+	 * by monoms (according to '-' / '+' signs).
+	 * @param str the string in which we need to check for spaces into.
+	 * @return str returns the string with spaces if needed.
+	 * */
+	public String HandlePolynomSpaces(String str) {
+
+		str = str.replaceAll(" ", "");						// init the string to avoid string with " " and "" combined.
+
+		if(!(str.contains(" "))) {
+			if(str.contains("+")) {
+				str = str.replaceAll("\\+" , " +");
+			}
+			if(str.contains("-")) {
+				str = str.replaceAll("\\-" , " -");
+			}
+		}
+		
+		if(str.charAt(0) == ' ')							// incase we split a Polynom who starts with '-', example: " -x +3x^2".
+			str = str.substring(1);
+		return str;
 	}
 
 }
