@@ -19,7 +19,7 @@ public class Monom implements function{
 			this.set_power(b);			
 		}
 		catch(Exception e){
-
+			
 		}
 	}
 
@@ -115,7 +115,7 @@ public class Monom implements function{
 
 		else {
 			m1.set_coefficient(this._coefficient * this._power);					// if the power is positive and higher than 0, coefficiient is being multiplied by power, 
-			m1.set_power(this._power - 1);										// power is lowered by 1.	
+			m1.set_power(this._power - 1);											// power is lowered by 1.	
 		}
 		return m1;
 	}

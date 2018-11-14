@@ -38,13 +38,6 @@ public class Polynom implements Polynom_able{
 	 * @param _p Gets a string from the user, which contains a data of a new polynom.
 	 */
 	public Polynom (String _p) {
-		try {
-			double num = Double.parseDouble(_p);
-			this.add(new Monom(num,0));
-			return;
-		}
-		catch (Exception e) {
-		}
 
 		_p = HandlePolynomSpaces(_p);
 
@@ -58,15 +51,14 @@ public class Polynom implements Polynom_able{
 					mTemp = splited_p[i]+splited_p[i+1];
 					i++;
 				}
+				
 			}
-			else 
+
 				mTemp = splited_p[i];
-			if (!mTemp.contains("x")) 
-				mTemp+=mTemp + "x^0";
-			if (mTemp.charAt(mTemp.length()-1) == 'x')
-				mTemp+="^1";
 			if (mTemp.charAt(0) == 'x')
 				mTemp = "1"+mTemp;
+			if (mTemp.charAt(mTemp.length()-1) == 'x')
+				mTemp+="^1";
 			if (mTemp.charAt(0) == '+'  && mTemp.charAt(1) == 'x')
 				mTemp = "1" + mTemp.substring(1);
 			if (mTemp.charAt(0) == '-'  && mTemp.charAt(1) == 'x')
