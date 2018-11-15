@@ -63,5 +63,15 @@ class MonomTest {
 		
 		assertEquals(0, test.compare(expectedResult, m2));
 	}
-
+	
+	@Test				// using the function f(x)
+	void test6() {
+		
+		Monom m1 = new Monom(4,5);
+		double actual = m1.f(2);
+		double expected = 4*Math.pow(2, 5);
+		
+		assertEquals(expected, actual);
+	
+	}
 }

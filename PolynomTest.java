@@ -103,4 +103,23 @@ class PolynomTest {
 		assertEquals(-1, pol.root(-6, -1, Double.MIN_NORMAL));
 	}
 	
+	@Test					// using the function f(x)
+	void test10() {
+		Polynom pol = new Polynom("2x + 4 + x^2");
+		double actual = pol.f(2);
+		double expected = 2*2 + 4 + 2*2;
+		
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test					// calculating area of a polynom
+	void test11() {
+		Polynom pol = new Polynom("x^3 + 2x");			
+		double actual = pol.area(0, 2, 0.0001);																// answer is ~ 8.000000050761603
+		double expected = (((Math.pow(2, 4))/4) + Math.pow(2, 2)-(((Math.pow(0, 4))/4) + Math.pow(0, 2)));				// real answer = 8.00
+		
+		assertTrue(Math.abs(actual-expected) < 0.01);
+		
+	}
 }
